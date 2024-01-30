@@ -1,0 +1,31 @@
+#container{
+    background-color: beige;
+    margin: 0 auto;
+    width: fit-content;
+    padding: 1em;
+}
+
+h1{
+    text-align: center;
+}
+
+#search{
+    width: 80%;
+}
+
+label{
+    font-weight: bold;
+}
+
+table {
+    border-spacing: 1rem;
+  }
+
+  #code, #name, #progress{
+    font-weight: bold;
+  }
+
+  #code:hover, #name:hover, #progress:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }
