@@ -1,5 +1,7 @@
 "use strict";
-const nameEl = document.getElementById("code");
+const codeEl = document.getElementById("code");
+const nameEl = document.getElementById("name");
+const progressEl = document.getElementById("progress");
 const courseEl = document.getElementById("coursesList");
 
 window.onload = init;
@@ -10,8 +12,24 @@ async function init(){
         const response = await fetch ("https://dahlgren.miun.se/ramschema_ht23.php");
         const courses = await response.json();
         showCourses(courses);
-        nameEl.addEventListener("click", function() {
+
+        //Sortera enligt kurskod
+        codeEl.addEventListener("click", function() {
             courses.sort((a, b)=> (a.code > b.code)? 1 : -1);
+            courseEl.innerHTML = ""
+            showCourses(courses);
+           });
+
+           //Sortera enligt kursnamn
+           nameEl.addEventListener("click", function() {
+            courses.sort((a, b)=> (a.coursename > b.coursename)? 1 : -1);
+            courseEl.innerHTML = ""
+            showCourses(courses);
+           });
+
+           //Sortera enligt progression
+           progressEl.addEventListener("click", function() {
+            courses.sort((a, b)=> (a.progression > b.progression) ? 1 : -1 );
             courseEl.innerHTML = ""
             showCourses(courses);
            });
