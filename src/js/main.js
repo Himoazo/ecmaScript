@@ -2,6 +2,7 @@
 const codeEl = document.getElementById("code");
 const nameEl = document.getElementById("name");
 const progressEl = document.getElementById("progress");
+const searchEl = document.getElementById("search");
 const courseEl = document.getElementById("coursesList");
 
 window.onload = init;
@@ -13,6 +14,14 @@ async function init(){
         const courses = await response.json();
         showCourses(courses);
 
+        //Sök funktion
+        searchEl.addEventListener("input", function(){
+            searchEl.addEventListener("input", function(){
+                let filtered = courses.filter(item => item.code.toLowerCase().includes(searchEl.value) || item.coursename.toLowerCase().includes(searchEl.value));
+                courseEl.innerHTML = ""
+                showCourses(filtered);
+            });
+        });
         //Sortera enligt kurskod
         codeEl.addEventListener("click", function() {
             courses.sort((a, b)=> (a.code > b.code)? 1 : -1);
@@ -29,7 +38,7 @@ async function init(){
 
            //Sortera enligt progression
            progressEl.addEventListener("click", function() {
-            courses.sort((a, b)=> (a.progression > b.progression) ? 1 : -1 );
+            courses.sort((a, b)=> (a.progression > b.progression) ? 1 : -1);
             courseEl.innerHTML = ""
             showCourses(courses);
            });
